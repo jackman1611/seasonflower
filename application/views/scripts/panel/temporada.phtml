@@ -1,0 +1,104 @@
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>	
+<?php 	
+		function setDate($date){
+	        $dias = array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+	        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+	        $year = date("Y", strtotime($date));
+	        $month = $meses[intval(date("m", strtotime($date)))-1];
+	        $day = $dias[date("w", strtotime($date))];
+
+	        return $day.' '.date("d", strtotime($date)).' de '.$month.' '.$year;
+    	}
+?>
+
+
+
+<div class="col-lg-12">
+	<div class="white-box">
+		<div class="jumbotron" style="background-image: url('/img/season.jpg'); background-size: cover;
+			background-position: center center; ">
+    		<h1>Gestion de temporadas</h1>
+		</div>
+		<?php $session = new Zend_Session_Namespace("current_session"); 
+                // echo $session->id;
+                echo $session->nombre;
+            ?>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="white-box">
+		<form action="/panel/requestaddtemporada" method="POST" enctype="multipart/form-data" class="form-horizontal form-material">
+			<div class="form-group">
+				<div class="col-md-12">
+					<label for="text">Nombre:</label>
+					<p><input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" required></p>
+				</div>
+				<div class="col-md-12">
+					<label for="text">Descripción:</label>
+						<textarea class="" id="editorDescripcion" rows="100" cols="100"  name="descr"></textarea>
+						<script type="text/javascript">CKEDITOR.replace( 'editorDescripcion',{
+					height : 200,
+				}); </script>
+				</div>
+				<div class="col-md-12"><br>
+					<label for="text">Inicio: </label>
+					<p><input type="date" name="idate" class="form-control" min="2018-01-02" required></p>
+				</div>
+				<div class="col-md-12">
+					<label for="text">Final: </label>
+					<p><input type="date" name="fdate" class="form-control" min="2018-01-02" required></p>
+				</div>
+				<!-- Boton -->
+				<div class="col-lg-12 text-center"><br>
+					<p><input type="submit" value="Enviar Datos" class="btn btn-primary"></p>
+				</div><br>
+				<!-- Boton -->
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="white-box">
+		<h3>Lista de Temporadas</h3>
+		<?php foreach ($this->temporadas as $temp) { ?>
+	<table class="table text-left table-hover">
+		<thead>
+			<tr>
+				<th>Nombre</th>	
+				<th>Inicio</th>
+				<th>Final</th>
+				<th>Editar</th>	
+				<th>Eliminar</th>
+			</tr> 
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td><?php echo $temp["nombre"]; ?></a></td>
+				<td><?php echo setDate($temp["fechainicial"]); ?></td>
+				<td><?php echo setDate($temp["fechafinal"]); ?></td>
+				<td><a href="/panel/temporadaedit/id/<?php echo $temp["id"] ?>"><i class="fa fa-2x fa-edit"></i></a></td>
+				<td><a href="/panel/requestdeletetemporada/id/<?php echo $temp["id"]; ?>" ><span class="warning" style="color: red;"><i class="fa fa-2x fa-trash"></i></span></a></td>
+			</tr>
+		</tbody>
+		
+	</table><br>
+
+	<table class="table text-left table-hover" style="border-bottom: 3px solid #ccc;">
+		<thead>
+			<tr>
+				<th>Descripcion</th>
+			</tr> 
+		</thead>
+		
+		<tbody>
+			<tr>
+				<td><?php echo $temp["descripcion"]; ?></a></td>
+			</tr>
+		</tbody>
+		
+	</table><?php } ?>
+</div>
+</div>

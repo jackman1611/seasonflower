@@ -1,0 +1,59 @@
+<?php 
+
+function limitText($string){
+        $string = strip_tags($string);
+        if (strlen($string) > 100) {
+        // truncate string
+        $stringCut = substr($string, 0, 100);
+        // make sure it ends in a word so assassinate doesn't become as?lang=s...
+         $string = substr($stringCut, 0, strrpos($stringCut, ' '));
+        }else{
+             $string = $string;
+        }
+        return $string;
+    }
+
+?>
+<br />
+<h1>Recomendados:</h1>			
+
+<div class="row">
+	<?php foreach ($this->produc as $key){ ?>
+	<div class="col-md-3 text-center" style="position: relative; padding-right: 15px; padding-bottom: 50px;"><br>
+		<div class="card cards-sty" style="border-color: #A4A4A4;">
+  			<div class="card-body">
+				<div class="product-block">
+					<div>
+						<!-- Sale lable -->
+						<div class="offers">
+						<?php if ($key["ofer"]==1): ?>
+							<i class="fa fa-tags"></i> EN OFERTA!
+						<?php endif; ?>
+						</div>
+						<!-- / Sale lable --><br/>
+						<a href="/home/detalleproducto/id/<?php echo $key["id"]; ?>">
+						<img src="/<?php echo $key["imagen"]; ?>" width= "250" height= "250" class="rounded">
+						</a>
+						<hr style="border-color: #A4A4A4;" />
+					</div>
+					<div >
+						<h6 class="text-center name"><a href="/home/detalleproducto/id/<?php echo $key["id"]; ?>"><?php echo $key["nombre"]; ?></a></h6>
+						<hr style="border-color: #A4A4A4;" />
+						<div class="w3-container w3-center">
+						<p class="description">	<?php echo limitText($key["descripcion"]); ?> </p>
+
+						</div>
+						<div class="price">
+							<?php if ($key["ofer"]==1): ?>
+								<span class="price-new">$<?php echo $key["precioofer"]; ?></span>
+							<?php else: ?>
+								<span class="price-old">$<?php echo $key["precio"]; ?></span>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php  } ?>
+</div> 

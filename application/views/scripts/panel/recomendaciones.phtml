@@ -1,0 +1,66 @@
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+
+<div class="col-md-12">
+    <div class="white-box">
+        <div class="jumbotron" style="background-image: url('/img/recom.jpg'); background-size: cover;
+        background-position: top center; ">
+            <h1>Ingrese las Recomendaciones</h1>
+        </div>
+        <?php $session = new Zend_Session_Namespace("current_session"); 
+                // echo $session->id;
+                echo $session->nombre;
+            ?>
+    </div>
+</div>
+<!-- inicio container -->
+<div class="col-md-12">
+    <div class="white-box">
+        <form method="post" enctype="multipart/form-data" action="/panel/requestrecomendacionadd" class="form-horizontal form-material">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Ingrese el nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="des">Descripcion</label>
+                <textarea class="" id="descr" rows="100" cols="100"  name="desc"></textarea>
+                <script type="text/javascript">CKEDITOR.replace( 'descr',{ height : 100,}); </script>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input class="form-control" name="url" type="file" required>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 text-center">
+                    <p><input type="submit" value="Guardar" class="btn btn-primary"></p>
+                </div>
+            </div>
+        </form><!-- end form -->
+    </div>
+</div><!-- end column 6 grupo 1-->
+
+<div class="col-md-12"><!-- start group 2 -->
+    <div class="white-box">
+        <h5>Lista de Recomendaciones</h5>
+        <table class="table text-left table-hover">                    
+            <thead>
+                <tr>
+                    <th>Id Recomendacion</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->recomendation as $key ) { ?>
+                <tr>
+                    <td><p><?php echo $key["nombre"]; ?></p></td>
+                    <td><p><?php echo $key["descripcion"]; ?></p></td>
+                    <td><p><img src="/<?php echo $key["imagen"]; ?>" WIDTH="100" HEIGHT="100"></p></td>
+                    <td><a href="/panel/requestdeleterecomendacion/id/<?php echo $key["id"]; ?>"><i class="fa fa-2x fa-trash" style="color: red;"></i></a></td>
+                    <td><a href="/panel/recomendacionesedit/id/<?php echo $key["id"]; ?>"><i class="fa fa-2x fa-edit"></i></a></td>
+                </tr>     
+                <?php } ?>
+            </tbody>  
+        </table>    
+    </div>
+</div>

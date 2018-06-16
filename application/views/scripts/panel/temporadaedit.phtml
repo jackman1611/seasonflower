@@ -1,0 +1,65 @@
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>	
+<div class="col-lg-12">
+	<div class="white-box">
+		<div class="jumbotron" style="background-image: url('/img/season.jpg'); background-size: cover;
+		        background-position: top center; ">
+		    <h1>Editar temporada</h1>
+		</div>
+		<?php $session = new Zend_Session_Namespace("current_session"); 
+		                // echo $session->id;
+		                echo $session->nombre;
+		            ?>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="white-box">
+		<form action="/panel/requestupdatetemporada" method="POST" enctype="multipart/form-data" class="form-horizontal form-material">
+			<?php foreach ($this->temporada as $temp) { ?>
+
+			<input type="hidden" name="id" value="<?php echo $temp['id']; ?>">
+			<div class="form-group">
+				<div class="col-md-12">
+					<label for="text">Nombre : </label>
+					<p><input type="text" name="name" class="form-control" value="<?php echo $temp['nombre']; ?>"></p>
+				</div>
+				<div class="col-md-12">
+					<label for="text">Descripción:</label>
+					<textarea class="" id="editorDescripcion1" rows="100" cols="100"  name="descr"><?php echo $temp['descripcion']; ?></textarea>
+					<script type="text/javascript">CKEDITOR.replace( 'editorDescripcion1',{
+						height : 200,
+					}); </script>
+				</div>
+				<div class="col-md-12"><br>
+					<label for="text">Inicio: </label>
+					<p><input type="date" name="idate" class="form-control" min="2018-01-02" value="<?php echo $temp['fechainicial']; ?>"></p>
+				</div>
+				<div class="col-md-12">
+					<label for="text">Final: </label>
+					<p><input type="date" name="fdate" class="form-control" min="2018-01-02" value="<?php echo $temp['fechafinal']; ?>"></p>
+				</div>
+				<div class="col-md-12">
+					<label for="text">Recomendacion: </label>
+					<select id="view1" class="form-control" name="recom">
+						<option value="">Seleccione</option>
+						<?php foreach ($this->recomendation as $reco) { ?>
+						<option value="<?php echo $reco['id']; ?>"><?php echo $reco['nombre']; ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<?php } ?>
+				<!-- Boton -->
+				<div class="col-md-12 text-center"><br>
+					<p><input type="submit" value="Enviar Datos" class="btn btn-primary"></p>
+				</div><br>
+				<!-- Boton -->
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#view").val('<?php echo $temp["fkflores"] ?>');
+		$("#view1").val('<?php echo $temp["fkrecomendaciones"] ?>');
+	});
+</script>

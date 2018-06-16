@@ -1,0 +1,42 @@
+<div class="col-md-12">
+	<div class="white-box">
+		<div class="jumbotron" style="background-image: url('/img/flowers.jpg'); background-size: cover;
+		background-position: top center; ">
+		<h1>Seleccion de temporadas</h1>
+	</div>
+</div>
+ 
+<div class="col-md-12">
+	<div class="white-box">
+		<form action="/panel/requestflortemporada" method="POST" enctype="multipart/form-data" class="form-horizontal form-material">
+			<?php foreach ($this->flores as $flw) { ?>
+			<input type="hidden" name="id" value="<?php echo $flw['id']; ?>">
+			<?php } ?>
+			<div class="row">
+				<div class="col-md-12">
+					<?php foreach ($this->temporadas as $tmp) { ?>
+					<input type="checkbox" name="option[]" value="<?php echo $tmp["id"]; ?>" <?php echo exist($tmp["id"],$this->floresxtmp); ?> ><?php echo $tmp["nombre"]; ?></input><br>
+					<?php } ?>
+				</div>
+			</div>
+			<!-- Boton -->
+			<div class="form-group text-center"><br>
+				<p><input type="submit" value="Guardar" class="btn btn-primary"></p>
+			</div><br>
+			<!-- Boton -->
+		</form>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="white-box">
+		</div>
+</div>
+
+<?php function exist($id,$fxt){
+	foreach ($fxt as $flow){
+		if ($id == $flow["fktemporada"]) {
+			return "checked=\"checked\"";
+		}
+	}
+} ?>

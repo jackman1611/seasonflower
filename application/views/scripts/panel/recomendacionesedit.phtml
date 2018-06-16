@@ -1,0 +1,40 @@
+<script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+<div class="col-md-12">
+    <div class="white-box">
+        <div class="jumbotron" style="background-image: url('/img/recom.jpg'); background-size: cover;
+        background-position: top center; ">
+            <h1>Modificar Recomendacion</h1>
+        </div>
+        <?php $session = new Zend_Session_Namespace("current_session"); 
+                // echo $session->id;
+                echo $session->nombre;
+            ?>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="white-box">
+        <form method="POST" enctype="multipart/form-data" action="/panel/requestupdaterecomendacion" class="form-horizontal form-material">
+            <?php foreach ($this->recomendation as $key ) { ?> 
+            <div class="form-group">
+                <input type="hidden" name="id" id="recomen" value="<?php echo $key["id"]; ?>">
+                <label for="name">Nombre</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Ingrese el nombre" value="<?php echo $key["nombre"]; ?>">
+            </div> 
+            <div class="form-group">
+                <label for="des">Descripcion</label>
+                <textarea class="" id="descr" rows="100" cols="100"  name="desc"><?php echo $key["descripcion"]; ?></textarea>
+                <script type="text/javascript">CKEDITOR.replace( 'descr',{ height : 100,}); </script> 
+            </div> 
+            <div class="form-group"> 
+                <label for="text">Imagen</label>
+                <input name="url" type="file" >
+                <input type="hidden" name="imahidden" value="<?php echo $key["imagen"]; ?>">           
+            </div>
+            <?php } ?>
+            <div class="form-group text-center">
+                <input type="submit" class="btn btn-primary" value="Modificar">
+            </div>
+        </form>
+    </div>
+</div>

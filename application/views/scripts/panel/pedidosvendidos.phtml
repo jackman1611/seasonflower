@@ -1,0 +1,34 @@
+<div class="col-md-12">
+   <div class="white-box">
+        <h2>Productos Vendidos</h2>
+    <table class="table table-bordered table-hover">                    
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Orden</th>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Direccion</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php $cont =1;
+                foreach ($this->complete as $key){ 
+                    if($key['iscomplete']==1){?>
+                    <tr>
+                        <th scope="row"><?php echo $cont++; ?></th>
+                        <td><p><?php echo $key["id"];?></p></td>
+                        <td><p><?php echo $key["nombre"]; ?></p></td>
+                        <td><p><?php echo $key["idusuario"]; ?></p></td>
+                        <td><p><?php echo $key["iddireccion"];?></p></td>
+                        
+                        <td>
+                            <a href="/panel/detallepedidos/id/<?php echo $key["id"]; ?>"><i class="fa fa-info" style="color: blue;"> Detalles</i></a>
+                        </td>                        
+                    </tr>    
+            <?php } } ?>
+        </tbody>  
+    </table>
+   </div>
+</div>

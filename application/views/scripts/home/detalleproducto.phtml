@@ -1,0 +1,199 @@
+<?php 
+function limitText($string){
+        $string = strip_tags($string);
+        if (strlen($string) > 50) {
+        // truncate string
+        $stringCut = substr($string, 0, 50);
+        // make sure it ends in a word so assassinate doesn't become as?lang=s...
+        $string = substr($stringCut, 0, strrpos($stringCut, ' '));
+        }else{
+             $string = $string;
+        }
+        return $string;
+    }
+?>
+
+<div class="row">
+	<br />
+	<h1 class="name"> Detalles del Producto</h1>
+</div>
+
+<div class="row">
+	<?php foreach ($this->productos as $key){  ?>
+		<?php $oferta = $key["ofer"]; ?>
+		<input type="hidden" name="canq" id="catiti" value="<?php echo $key['stock']; ?>"><br><br>
+			<!-- Swiper -->
+			<div class="col-md-6">
+				<div id="swiper-container2" class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img class="img-fluid img-thumbnail mx-auto d-block" src="/<?php echo $key["imagen"]; ?>" WIDTH = '350' HEIGHT = '350' class='img-fluid' />
+						</div>
+						<?php $i=0; foreach ($this->sli as $k) {  ?>
+							<div class="swiper-slide">
+								<img class="img-fluid img-thumbnail mx-auto d-block" src="/<?php echo $k['imagen']; ?>" WIDTH = '350' HEIGHT = '350' class='img-fluid' >
+							</div>
+						<?php  } ?>	
+					</div>
+				</div>
+			</div><br>
+			<!-- Swiper -->
+
+			<!-- Description -->
+			<div class="col-md-6 img-thumbnail " style="border-color: #A4A4A4;">
+				<div class="col-md-12">
+					<br>
+					<h2 class="name"><?php echo $key["nombre"]; ?></h2>
+					<hr style="border-color: #A4A4A4; " />
+
+					<?php date_default_timezone_set('America/Mexico_City'); 
+					$timer = date('Y-m-d'); ?>
+
+					<?php if ($key["ofer"]==1): ?>
+						<input type="hidden" id="offert" name="" value="1">
+						<input type="hidden" id="fini" name="" value="<?php echo $key['inicio']; ?>">
+						<input type="hidden" id="ffin" name="" value="<?php echo $key['final']; ?>">
+
+						<?php if ($timer>=$key['inicio']&&$timer<=$key['final']): ?>
+							<h3 style="color: #00BFFF;">$ <?php echo $key["precioofer"]; ?></h3>
+							<input type="hidden" id="offert" name="" value="1">
+							<input type="hidden" name="pri" id="priceoffer" value="<?php echo $key["precioofer"]; ?>">
+							<input type="hidden" name="pri" id="price" value="<?php echo $key["precio"]; ?>">
+							<input type="hidden" id="time" name="horas" value="<?php echo $key['timeofer'] ?>">
+							<h1>La oferta finaliza en:</h1>
+							<h2 id='CuentaAtras'></h2>
+						<?php else: ?>
+							<h3 style="color: #00BFFF;">$ <?php echo $key["precio"]; ?></h3>
+							<input type="hidden" id="offert" name="" value="0">
+							<input type="hidden" name="pri" id="priceoffer" value="0">
+							<input type="hidden" name="pri" id="price" value="<?php echo $key["precio"]; ?>">
+						<?php endif ?>
+					<?php else: ?>
+						<h3 style="color: #00BFFF;">$ <?php echo $key["precio"]; ?></h3>
+						<input type="hidden" id="offert" name="" value="0">
+						<input type="hidden" name="pri" id="priceoffer" value="0">
+						<input type="hidden" name="pri" id="price" value="<?php echo $key["precio"]; ?>">
+					<?php endif; ?>			
+
+					<hr style="border-color: #A4A4A4;" />	
+					<h6 class="name">Disponibles: <?php echo $key["stock"]; ?></h6>
+					<br />
+
+					<h4 class="name">Descripcion</h4>
+					<h5 class="description"><?php echo $key["descripcion"]; ?></h5>
+					<hr style="border-color: #A4A4A4;" />
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<select name="cantidad" id="qnty" class="form-control" required >
+							<option value="0">Selecciona cantidad</option>
+							<?php for ($i=1; $i <= $key['stock']; $i++) { ?>
+								<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+
+					<hr style="border-color: #A4A4A4;" />	
+
+					<div class="col-md-6">
+						<a href="" style="background-color: pink; border-color: pink; font-family: monospace; font-size: 18px;" onclick="addToCar(<?php echo $key["id"]; ?>,'<?php echo $key["nombre"]; ?>'); 
+						return false;"  class="form-control btn btn-primary"><i class="fa fa-shopping-cart"></i> AGREGAR AL CARRITO </a><br><br>
+					</div><br>
+				</div>
+			</div>
+			<!-- Description -->
+	<?php } ?>
+</div><br>
+
+<div class="row rounded">
+	<div class="col-lg-12"><br>
+		<h3 class="name">Elige una Tarjeta: </h3>
+	</div>
+	<?php foreach ($this->tarjeta as $tjt ) { ?>
+	<div class="col-lg-3 form-control">
+		<input type="radio" name="tarjeta" id="cardpro" value="<?php echo $tjt['fktarjeta']; ?>"> <?php echo $tjt['nombre']; ?>
+		<img class="rounded mx-auto d-block" src="/<?php echo $tjt['imagen']; ?> " WIDTH = '250' HEIGHT = '250'><br>
+	</div>
+	<?php } ?>	
+</div><br>
+
+<div class="row">
+	<div class="col-md-12">
+		<hr style="border-color: #A4A4A4;" />
+		<hr style="border-color: #A4A4A4;" /><h2 class="name">Productos recomendados</h2><hr style="border-color: #A4A4A4;" />
+	</div>
+
+	<?php foreach ($this->product as $pro) { ?>
+		<div class="col-md-3" >
+			<center>
+				<div class="card cards-sty">
+					<div class="card-body">
+						<div class="product-block">
+							<div>
+								<!-- Sale lable -->
+								<div class="offers">
+									<?php if ($pro["ofer"]==1): ?>
+										<i class="fa fa-tags"></i> EN OFERTA!
+									<?php endif; ?>
+								</div>
+								<!-- / Sale lable -->
+								<a href="/home/detalleproducto/id/<?php echo $pro["id"]; ?>">
+									<img src="/<?php echo $pro["imagen"]; ?>" width= "250" height= "250" class="rounded">
+								</a>
+								<hr style="border-color: #A4A4A4;" />
+							</div>
+
+							<div>
+								<h6 class="text-center name"><a href="/home/detalleproducto/id/<?php echo $pro["id"]; ?>"><?php echo $pro["nombre"]; ?></a></h6>
+								<hr style="border-color: #A4A4A4;" />
+								<div class="w3-container w3-center">
+									<p class="description">	<?php echo limitText($pro["descripcion"]); ?> </p>
+								</div>
+
+								<div class="price">
+									<?php if ($pro["ofer"]==1): ?>
+										<span class="price-new">$<?php echo $pro["precioofer"]; ?></span>
+									<?php else: ?>
+											<span class="price-old">$<?php echo $pro["precio"]; ?></span>
+									<?php endif; ?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</center><br>	
+		</div>
+	<?php } ?>
+</div>
+
+<script language="JavaScript">
+<?php if ($oferta==1): ?>
+	
+	inicio = document.getElementById("fini").value;
+	final = document.getElementById("ffin").value;
+	updateReloj();
+<?php endif; ?>
+function updateReloj() {
+	var fecha1 = moment(inicio);
+	var fecha2 = moment(final);
+	var tiempo = new Date();
+	var dleft=fecha2.diff(fecha1, 'days');
+	var dias=fecha2.diff(moment().format('L'), 'days');
+	
+    var hora = 23-tiempo.getHours();
+    var minutos = 59-tiempo.getMinutes();
+    var segundos = 59-tiempo.getSeconds();
+    
+    tiempoAtras=  (dias <= 1) ? dias+" Días " : "0 Días";
+    tiempoAtras+= (hora < 10) ? "0"+hora :hora;
+    tiempoAtras+= ((minutos < 10) ? ":0" : ":") + minutos;
+    tiempoAtras+= ((segundos < 10) ? ":0" : ":") + segundos;
+
+    document.getElementById('CuentaAtras').innerHTML = tiempoAtras;
+
+    setTimeout("updateReloj()",1000);
+}
+
+</script>

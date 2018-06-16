@@ -1,0 +1,89 @@
+<div class="jumbotron" style="background-color: #ffffff;">
+    <h1>Nuevo Usuario</h1>
+</div>
+
+
+<div class="col-lg-12">
+	<form action="/home/requestadduser" method="POST" enctype="multipart/form-data">
+		<div>
+			<input type="hidden" name="rol" value="2">
+             <br>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Nombre(s): </h4></label>
+				<p><input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Apellido paterno: </h4></label>
+				<p><input type="text" name="apa" class="form-control" placeholder="Ingrese el Apellido Paterno" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Apellido materno: </h4></label>
+				<p><input type="text" name="ama" class="form-control" placeholder="Ingrese el Apellido Materno" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Dirección: </h4></label>
+				<p><input type="text" name="dir" class="form-control" placeholder="Ingrese la Direccion" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Telefono: </h4></label>
+				<p><input type="text" name="phone" class="form-control" onkeypress="return numeros(event)" maxlength="10" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Correo electronico: </h4></label>
+				<p><input type="mail" name="mail" id="mail" class="form-control" placeholder="Example@mail.com" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Contraseña: </h4></label>
+				<p><input type="password" name="pword" id="pword" class="form-control" placeholder="Ingrese Contraseña" required></p>
+			</div>
+			<div class="col-lg-12 text-left">
+				<label for="text"><h4>Confirme contraseña: </h4></label>
+				<p><input type="password" name="pwordc" id="pwordc" class="form-control" placeholder="Compruebe la Contraseña" required></p>
+			</div>
+		</div>
+		<!-- Boton -->
+		<div class="col-lg-12 text-center"><br>
+			<p><input type="submit" value="Enviar Datos" class="btn btn-primary"></p>
+		</div><br>
+		<!-- Boton -->
+	</form>
+</div>
+
+<script type="text/javascript">
+	function numeros(e){
+		key = e.keyCode || e.which;
+		tecla = String.fromCharCode(key).toLowerCase();
+		letras = " 0123456789";
+		especiales = [8,37,39,46];
+
+		tecla_especial = false
+		for(var i in especiales){
+			if(key == especiales[i]){
+				tecla_especial = true;
+				break;
+			} 
+		}
+
+		if(letras.indexOf(tecla)==-1 && !tecla_especial)
+			return false;
+	}
+</script>
+
+<script>
+
+	var pword, pwordc;
+
+	pword = document.getElementById('pword');
+	pwordc = document.getElementById('pwordc');
+
+	pword.onchange = pwordc.onkeyup = passwordMatch;
+
+	function passwordMatch() {
+	    if(pword.value !== pwordc.value)
+	        pwordc.setCustomValidity('Las contraseñas no coinciden. Verifique que las contraseñas que ingreso sean las mismas.');
+	    else
+	        pwordc.setCustomValidity('');
+	}
+
+</script>
+

@@ -1,0 +1,26 @@
+ <div class="col-md-12">
+ 	<!-- <?php foreach ($this->orden as $key) {
+ 		echo $key['nombre'];
+ 	} ?> -->
+    <table class="table">                    
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>nombre producto</th>
+                <th>cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $cont =1;
+                foreach ($this->pedidos as $key){ ?>
+                    <tr>
+                        <th scope="row"><?php echo $cont++; ?></th>
+                        <td><p><?php echo $key["nombre"]; ?></p></td>
+                        <td><p><?php echo $key["cantidad"];?></p></td>
+                        <td><p><?php echo $key["precio"];?></p></td>
+                    </tr>    
+            <?php  } ?>
+        </tbody>  
+    </table>
+</div> 

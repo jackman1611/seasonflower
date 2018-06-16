@@ -1,0 +1,610 @@
+<?php $session = new Zend_Session_Namespace("current_session"); ?>
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Temporada de flores</title>
+	<!-- <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" > -->
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">	
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,400i,600,800,800i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Muli:400,400i,600,800,900,900i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/swiper.css">
+	
+
+	<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/tether.min.js"></script>	
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/ohsnap.js"></script>
+	<script type="text/javascript" src="/js/moment.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+	<style type="text/css">
+		
+			h1, h2, h3, h4, h5, h6,
+		.h1, .h2, .h3, .h4, .h5, .h6 {
+		  font-family: 'Montserrat', sans-serif;
+		  font-weight: bold;
+		  line-height: 1.1;
+		  color: #000;
+		}
+
+		.category-name{
+			font-size: 45px;
+			font-family: "Montserrat Alternates bold", sans-serif;
+			color: #000;
+		}
+
+		.text-sup{
+		    position: absolute;
+		    top: 74.5%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		}
+
+		body {
+		  font-family: "muli regular", sans-serif;
+		  font-size: 14px;
+		  line-height: 1.88;
+		  color: #959595;
+		  background-color: #fff;
+		  font-weight: 400;
+		}
+
+		footer .panel-title {
+		  
+		  font-family: 'Montserrat Alternates bold', sans-serif;
+		  font-weight: 400;
+		  color: #222222;
+		}
+
+		.product-block .name {
+		  	font-family: 'Montserrat Alternates' , sans-serif;
+		  	font-size: 14px;
+		  	margin-top: 0;
+		  	height: 30px;
+		  	text-align: left;
+		 	color: #000;
+		 	text-decoration: underline;
+		}
+
+		.list {
+		  	font-family: 'Montserrat Alternates', sans-serif;
+		  	font-size: 14px;
+		  	margin-top: 0;
+		  	height: 30px;
+		  	text-align: left;
+		 	color: #878585;
+		}
+
+		.description{
+			font-family: "muli regular", sans-serif;
+		    font-size: 16px;
+		    color: #777696;
+		}
+
+		.description-pr{
+			font-family: "muli regular", sans-serif;
+		    font-size: 14px;
+		    color: #777696;
+		}
+
+		.description-cart{
+			font-family: "Montserrat", sans-serif;
+		    font-size: 16px;
+		    color: #707070;
+		}
+
+		.products-block .product-col {
+		  	margin-bottom: 30px;
+		}
+		
+		.offers{
+			position: absolute;
+			color: #E112A4;
+		}
+
+		.price{
+			font-family: 'Montserrat Alternates', sans-serif;
+		  	font-size: 20px;
+		  	color: #000;
+		  	font-style: italic;
+		}
+
+		.little-title{
+			font-family: 'Montserrat Alternates', sans-serif;
+			font-size: 16px;
+			color: #000;
+			min-width: 400px;
+		}
+
+		.phone{
+			font-size: 30px;
+			font-family: 'Montserrat';
+			color:#7B90F9;
+		}
+
+		.cards-sty{
+			position: relative; 
+			max-height: 460px; 
+			max-width: 300px; 
+			min-height: 460px; 
+			min-width: 260px; 
+			border-color: #A4A4A4;
+			border-style: dotted;
+			border-width: 2px;
+		}
+
+		.other-sty{
+			position: relative; 
+			max-height: 325px; 
+			max-width: 250px; 
+			min-height: 325px; 
+			min-width: 250px; 
+			border-color: #A4A4A4;
+			border-style: dotted;
+			border-width: 2px;
+		}
+
+		.hr-dot{
+			border-color: #A4A4A4; 
+			border-style: dotted;
+			border-width: 1px;
+		}
+
+		.social{
+			color: #FF66CD;
+			align-content: center;
+		}
+
+		.menu-item{
+			font-family: 'Montserrat Alternates', sans-serif; 
+			font-size: 18px;
+			color: #000;
+		}
+
+		.menu-logo{
+			font-family: 'Montserrat Alternates', sans-serif; 
+			font-size: 16px;
+			color: #000;
+		}
+
+		.button{
+			font-family: 'Montserrat Alternates', sans-serif;
+			font-size: 12px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body background="/img/back.png">
+<!-- NAVBAR -->
+<nav class="navbar navbar-toggleable-lg navbar-expand-lg navbar-light bg-light" style="background-image: url('/img/bar.png'); background-position: center; height:  74;">
+	<a class="navbar-brand menu-logo" href="/home"><img src="/img/logo.png"  height="50" width="25"> Temporada de Flores</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav" style="">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item <?php echo getURL("/home/products"); ?>"><a class="nav-link menu-item" href="/home/products">Productos</a></li>
+			<li class="nav-item <?php echo getURL("/home/recomendations"); ?>"><a class="nav-link menu-item" href="/home/recomendations">Categorias</a></li>
+			<li class="nav-item dropdown ">
+				<a class="nav-link dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Temporada <span class="caret"></span></a>
+				<div class="dropdown-menu">
+					<?php foreach ($this->temporadas as $tmp) { ?>
+					<a class="dropdown-item menu-item <?php echo getURL('/home/temporada/id/'.$tmp["id"].''); ?>" href="/home/temporada/id/<?php echo $tmp['id']; ?>"><?php echo $tmp['nombre']; ?></a>
+					<?php } ?>
+				</div>
+			</li>
+			<?php if ($session->id) { ?>
+			<li class="nav-item dropdown ">
+				<a class="nav-link dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil <span class="caret"></span></a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item menu-item <?php echo getURL("/home/cuentas"); ?>" href="/home/cuentas"><span class="menu-title">Mis Cuentas</span></a>
+					<a class="dropdown-item menu-item <?php echo getURL("/home/pedidos"); ?>" href="/home/pedidos">Mis Pedidos</a>
+					<a class="dropdown-item menu-item <?php echo getURL("/home/direcciones"); ?>" href="/home/direcciones">Mis Direcciones</a>
+					<a class="dropdown-item menu-item <?php echo getURL("/home/compras"); ?>" href="/home/compras">Mis Compras</a>
+					<hr>
+					<a class="dropdown-item menu-item <?php echo getURL("/home/perfilusuario"); ?>" href="/home/perfilusuario">Ver perfil</a>
+				</div>
+			</li>
+			<?php } ?>		   	
+		</ul>
+		<ul class="navbar-nav my-2 my-md-0">
+			<li class="nav-item"><a class="nav-link" href="#" onclick="showItems(); return false;"><i id="button-cart" class="fa fa-2x fa-shopping-cart" style="color: #000;"></i></a></li>
+			<li class="nav-item <?php echo getURL("/home/contacto"); ?>"><a class="nav-link menu-item" href="/home/contacto">Contacto</a></li>
+			<?php if ($session->id) { ?>
+			<li class="nav-item"><a class="nav-link" href="/index/logout"><span class="menu-title menu-item">Cerrar sesion</span></a></li>
+			<?php } else { ?>
+			<li class="nav-item <?php echo getURL("/home/login"); ?>"><a class="nav-link menu-item" href="/home/login">Iniciar Sesion</a></li>
+			<li class="nav-item <?php echo getURL("/home/registro"); ?>"><a class="nav-link menu-item" href="/home/registro">Registrate!</a></li>
+			<?php } ?>				
+		</ul>
+	</div>
+</nav>
+<!-- NAVBAR -->
+
+<div class="container">
+	<?php echo $this->layout()->content; ?>
+	<div id="ohsnap" style="position: fixed; top: 100px; right: 30px;"></div><br>
+</div><br>
+<!-- CONTENIDO -->
+
+</body>
+<hr>
+<footer>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 column">
+				<div class="panel-heading">
+					<h5 class="panel-title">Detalles de contacto</h5>
+				</div>
+				<div class="phone">(55)00-00-00-00</div>
+				<p>Para ventas especiales no olvides contactarnos por medio del numero proporcionado o tambien por medio de nuestras redes sociales, que encontraras mas abajo.</p>                                                    
+				<div class="social-icon-list">
+					<div class="panel-heading">
+						<h5 class="panel-title">Redes sociales</h5>
+					</div>
+					<div>
+						<a href="#"><i class="social fa fa-3x fa-facebook-square" aria-hidden="true"></i></a>
+						<a href="#"><i class="social fa fa-3x fa-instagram" aria-hidden="true"></i></a>
+						<a href="#"><i class="social fa fa-3x fa-twitter" aria-hidden="true"></i></a>
+						<a href="mailto:temporadadeflores@gmail.com"><i class="social fa fa-3x fa-envelope-o" aria-hidden="true"></i></a>
+					</div>
+				</div>                            
+			</div>        
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 column border_arrow">
+				<div class="panel-heading">
+					<h5 class="panel-title">Productos</h5>
+				</div>
+				<ul>
+					<?php foreach ($this->productosf as $key){ ?>
+						<li><a class="list" href="/home/detalleproducto/id/<?php echo $key["id"]; ?>"><?php echo $key["nombre"]; ?></a></li>
+					<?php } ?>
+				</ul>                            
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 column border_arrow">
+				<div class="panel-heading">
+					<h6 class="panel-title">Recomendaciones</h6>
+				</div>
+				<ul>
+					<?php foreach ($this->recomendation as $key => $value) { ?>
+						<li><a class="list" href="/home/productosrecomendacion/id/<?php echo $value['id']; ?>"><?php echo $value['nombre']; ?></a></li>
+					<?php } ?>
+				</ul>                            
+			</div>           
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 column border_arrow">
+				<div class="panel-heading">
+					<h6 class="panel-title">Temporadas</h6>
+				</div>
+				<ul>
+					<?php foreach ($this->temporadas as $tmp) { ?>
+						<li><a class="list" href="/home/temporada/id/<?php echo $tmp['id']; ?>"><?php echo $tmp['nombre']; ?></a></li>
+					<?php } ?>
+				</ul>                            
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 column border_arrow hidden-xs hidden-sm">
+				<div class="panel-heading">
+					<h6 class="panel-title">Informacion</h6>
+				</div>
+				<ul>
+				</ul>
+			</div>   
+		</div>
+	</div>
+	
+</footer>
+<?php 
+	function getURL($url){
+		$currentURL = "$_SERVER[REQUEST_URI]";
+		if($currentURL == $url){
+			return "active";
+		}
+	}
+?>
+<style type="text/css">
+	.alert {
+		padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid #eed3d7;
+		border-radius: 4px;
+		/*position: relative;*/
+   		z-index: 1;
+		bottom: 0px;
+		right: 21px;
+		/* Each alert has its own width */
+		float: right;
+		clear: right;
+		background-color: white;
+	}
+
+	.alert-red {
+		color: white;
+		background-color: #ff0000;
+	}
+	.alert-green {
+		color: white;
+		background-color: #00a307;
+	}
+	.alert-blue {
+		color: white;
+		background-color: #0036a2;
+	}
+	.alert-yellow {
+		color: black;
+		background-color: #ffe100;
+	}
+	.alert-orange {
+		color:white;
+		background-color: #ff5d00;
+	}
+	.alert-gray {
+		color:black;
+		background-color: #aaaaaa;
+	}	
+</style>
+
+<!-- '<table class="table-hover">'
+						'<thead>'+
+							'<th>Nombre</th>'+
+							'<th>Cantidad</th>'+
+							'<th>Precio</th>'+
+							'<th>Quitar</th>'+
+						'</thead>'+
+						'<tbody>'+
+							'<td>'+res[i].name+'</td>'+
+							'<td>'+res[i].quantity+'</td>'+
+							'<td>'+relprice+'</td>'+
+							'<td><a href="#" onclick="delToCart('+i+'); return false;"><span class="warning" style="color: red;"><i class="fa fa-trash"></i></span></i></a></td>'+
+						'</tbody>'+
+					'</table>' -->
+
+<script src="/js/swiper.min.js"></script>
+<script type="text/javascript" >
+	function showItems(){
+		$.get( "/shopping/itemsget", function( data ) {
+			var res = JSON.parse(data);
+            // console.log(data);
+             // console.log(res);
+            var htm="<label class='little-title'>Articulos en carrito</label>";
+            
+            for(var i =0 ; i < res.length ; i++ ){
+            	if (res[i].offer==1) {var relprice=res[i].priceoffer; } else {var relprice=res[i].price;}
+             	htm +=
+             	'<br><label class="description-cart">'+res[i].name+'    Cantidad: '+res[i].quantity+'    Precio: '+relprice+
+             	' <a href="#" onclick="delToCart('+i+'); return false;"><span class="warning" style="color: red;"><i class="fa fa-trash"></i></span></i></a>'+'</label>';
+            }             		
+             	if(htm == "<label class='little-title'>Articulos en carrito</label>"){
+					Close();
+					ohSnap('Aun no tienes productos',{duration: '5000', color: 'red'});
+				} else{
+					Close();
+             		ohSnap(htm+'<p><a class="btn button btn-success" href="/orden"><i class="fa fa-credit-card"></i> Comprar</a> <a class="btn button btn-info" href="/home/pedidostmp"><i class="fa fa-shopping-basket"></i> Ver carrito</a></p>',{duration: '120000'});
+				}	
+             		//return htm;
+             	});
+	}
+
+	function delToCart(id){
+        $.post("/shopping/itemdelete",{ 
+            id: id,//id producto, 
+        }).done(function( data ) { 
+            
+            Close();
+            showItems();
+            console.log(data); 
+        });
+        return false;
+    }
+
+    function delCart(id,_data){
+        $.post("/shopping/itemdelete",{ 
+            id: id,//id producto, 
+        }).done(function( data ) { 
+       	//mandar lo nuevo
+					$.post("/shopping/itemadd",{ 
+		            id: _data[0],//id producto, 
+		            name: _data[1], //nombre , 
+		            quantity: _data[2], //cantidad,
+		            price: _data[3],//precio,
+		            priceoffer: _data[4],
+		            offer: _data[5],
+		            brand: _data[6], //recomendacion nombre, 
+		 		    currentbrand: _data[7], //idrecomendación
+		 		    card: _data[8],
+		 	        }).done(function( data ) { 
+		        			console.log('Se borro'); 
+		        			 ohSnap('Agregado al carrito!',{color: 'green'});  
+		        	});
+        });
+        return false;
+    }
+
+    function addToCar(id,nombre){
+    	a = document.getElementById("qnty").value;
+    	b = document.getElementById("catiti").value;
+    	offer = document.getElementById("offert").value;
+    	precio = document.getElementById("price").value;
+    	priceoffer = (document.getElementById("priceoffer").value != "0") ? document.getElementById("priceoffer").value : "" ;
+    	card = document.getElementById("cardpro").value;
+    	console.log(offer);
+    	$.get( "/shopping/itemsget", function( data ) {
+			var res = JSON.parse(data);
+    		// console.log(data);
+    		console.log("Aqui res");
+    		console.log(res);
+    		console.log("----------------------------------------------------");
+
+    		// ----------------------------------Condiciones------------------------
+			
+			if(res!=null){
+    			if(res.length != 0){
+    				console.log("Re index price product");
+    				for(var i=0 ; i < res.length ; i++ ){
+    					
+    					console.log(res[i].offer);
+    					console.log(res[i].name);
+    					console.log(res[i].id);
+    					var flag = false;
+
+    					if( id == res[i].id ){
+    						var c=parseInt(a)+parseInt(res[i].quantity);
+    						var d=b-c;
+    						console.log("mismo id");
+    						if (a<=0) {
+    							ohSnap('Selecciona cantidad',{color: 'yellow'});
+    						} else {
+    							if (res[i].offer!=offer) {
+    								console.log("Remove and Set the new value to cookie");
+    								console.log("Oferta diferente");
+    								console.log(name);
+			    					console.log(offer);
+			    					console.log(id);
+
+    								var information = [];
+    								console.log("suma"+res[i].quantity+"+"+a+" = "); 
+    								console.log(parseInt(res[i].quantity) + parseInt(a));
+    								var  total = parseInt(res[i].quantity) + parseInt(a);
+    								information = [id,nombre,total,precio,priceoffer,offer,1,1,card]
+    								delCart(i, information);
+    								// ohSnap('Agregado al carrito!',{color: 'green'});
+    							} else {
+    								if (d<=-1) {
+    									ohSnap('No se pueden agregar mas de este articulo!',{color: 'red'});
+    								} else {
+    									$.post("/shopping/itemadd",{ 
+							            id: id,//id producto, 
+							            name: nombre, //nombre , 
+							            quantity: (a), //cantidad,
+							            price: precio,//precio,
+							            priceoffer: priceoffer,
+							            offer: offer,
+							            brand: 1, //recomendacion nombre, 
+							 		    currentbrand: 1, //idrecomendación
+							 		    card:card,
+							 		}).done(function( data ) { 
+						        			// console.log(data); 
+						        		});
+    								console.log("Oferta igual");
+    								console.log(name);
+			    					console.log(offer);
+			    					console.log(id);
+
+							 		ohSnap('Agregado al carrito!',{color: 'green'});
+    								}
+    							}
+    						}
+    					} 
+
+    					if (id!=res[i].id) {
+    						flag=true;
+    					} else {
+    						break;
+    					}
+    				}//end first loop
+
+    				if (flag) {
+						if (a<=0) {
+						ohSnap('Selecciona cantidad',{color: 'yellow'});
+						} else {
+							$.post("/shopping/itemadd",{ 
+				            id: id,//id producto, 
+				            name: nombre, //nombre , 
+				            quantity: (a), //cantidad,
+				            price: precio,//precio,
+				            priceoffer: priceoffer,
+				            offer: offer,
+				            brand: 1, //recomendacion nombre, 
+				 		    currentbrand: 1, //idrecomendación
+				 		    card:card,
+				 		}).done(function( data ) { 
+			        			// console.log(data); 
+			        		});
+				 		console.log("id diferente");
+						console.log(name);
+    					console.log(offer);
+    					console.log(id);
+
+				 		ohSnap('Agregado al carrito!',{color: 'green'});
+				 		}
+    				}
+						
+
+	    		} else  {
+	    			if (a<=0) {
+	    				ohSnap('Selecciona cantidad',{color: 'yellow'});
+	    			} else {
+	    				$.post("/shopping/itemadd",{ 
+					            id: id,//id producto, 
+					            name: nombre, //nombre , 
+					            quantity: (a), //cantidad,
+					            price: precio,//precio,
+					            priceoffer: priceoffer,
+					            offer: offer,
+					            brand: 1, //recomendacion nombre, 
+					 		    currentbrand: 1, //idrecomendación
+					 		    card:card,
+					 		}).done(function( data ) { 
+				        			// console.log(data); 
+				        		});
+					 		console.log("Oferta leng>0");
+    								console.log(name);
+			    					console.log(offer);
+			    					console.log(id);
+
+					 		ohSnap('Agregado al carrito!',{color: 'green'});
+					 	}
+				}//end condition, validate if exist some value at the array
+			} else {
+				if (a<=0) {
+					ohSnap('Selecciona cantidad',{color: 'yellow'});
+				} else {
+					$.post("/shopping/itemadd",{ 
+				            id: id,//id producto, 
+				            name: nombre, //nombre , 
+				            quantity: (a), //cantidad,
+				            price: precio,//precio,
+				            priceoffer: priceoffer,
+				            offer: offer,
+				            brand: 1, //recomendacion nombre, 
+				 		    currentbrand: 1, //idrecomendación
+				 		    card:card,
+				 		}).done(function( data ) { 
+			        			// console.log(data); 
+			        		});
+				 		console.log("Todo vacio");
+    								console.log(name);
+			    					console.log(offer);
+			    					console.log(id);
+
+				 		ohSnap('Agregado al carrito!',{color: 'green'});
+				 	}
+    		}//end first condition
+    		// ----------------------------------Condiciones------------------------
+
+		});    	
+		return false;
+	}
+
+	$(document).ready(function(){
+
+		var swiper = new Swiper('#swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+
+		var swiper2 = new Swiper('#swiper-container2', {
+			loop: true,
+			autoplay: {
+				delay: 5000,
+			}
+		});
+	});
+</script>
+</html>

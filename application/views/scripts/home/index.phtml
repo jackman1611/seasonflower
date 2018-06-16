@@ -1,0 +1,128 @@
+<?php 
+
+function limitText($string){
+        $string = strip_tags($string);
+        if (strlen($string) > 100) {
+        // truncate string
+        $stringCut = substr($string, 0, 100);
+        // make sure it ends in a word so assassinate doesn't become as?lang=s...
+         $string = substr($stringCut, 0, strrpos($stringCut, ' '));
+        }else{
+             $string = $string;
+        }
+        return $string;
+    }
+
+?>
+
+<?php foreach ($this->recomendation as $key => $value) { 
+	if ($value['nombre']=="Clasico") {
+		$reco=$value['id'];
+		$cla=$value['imagen'];
+	}
+	if ($value['nombre']=="Ella") {
+		$reco1=$value['id'];
+		$ela=$value['imagen'];
+	}
+	if ($value['nombre']=="El") {
+		$reco2=$value['id'];
+		$el=$value['imagen'];
+	}
+} ?>
+<br>
+<div class="panel-heading text-center">
+	<img src="/img/img_sep/FS2.png" class="img-fluid mx-auto d-block" style="width: 1000; height: 150;"><br>
+</div>
+
+<div class="row">
+	<div class="col-lg-4 text-center">
+		<a href="/home/productosrecomendacion/id/<?php echo $reco; ?>">
+			<img class="rounded img-fluid img-thumbnail mx-auto d-block" src="/<?php echo $cla; ?>" width="360" height="480"><br>
+			<p class="category-name">Clasico</p>
+		</a>
+	</div>
+	<div class="col-lg-4 text-center">																	 
+		<a href="/home/productosrecomendacion/id/<?php echo $reco1; ?>">
+			<img class="rounded img-fluid img-thumbnail mx-auto d-block" src="/<?php echo $ela; ?>" width="360" height="480"><br>
+			<p class="category-name">Ella</p>
+		</a>
+	</div>
+	<div class="col-lg-4 text-center"> 
+		<a href="/home/productosrecomendacion/id/<?php echo $reco2; ?>">
+			<img class="rounded img-fluid img-thumbnail mx-auto d-block" src="/<?php echo $el; ?>" width="360" height="480"><br>
+			<p class="category-name">Él</p>
+		</a>
+	</div>
+	<br>
+</div>
+
+<div class="panel-heading text-center">
+	<img src="/img/img_sep/FS2.png" class="img-fluid mx-auto d-block" style="width: 1000; height: 150;"><br>
+</div>
+
+<div class="row text-center">
+	<div class="col-md-12"><br>
+		<div class="row">
+			<div id="swiper-container2" class="swiper-container"  style="position: relative; z-index: 0;">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img class="img-fluid img-thumbnail mx-auto d-block" src="/img/img_covers/Cover1.jpg" width="1130" height="520"/>
+					</div>	
+					<div class="swiper-slide">
+						<img class="img-fluid img-thumbnail mx-auto d-block" src="/img/img_covers/Cover1_1.jpg" width="1130" height="520"/>
+					</div>	
+					<div class="swiper-slide">
+						<img class="img-fluid img-thumbnail mx-auto d-block" src="/img/img_covers/Cover1_2.jpg" width="1130" height="520"/>
+					</div>	
+				</div>
+			</div>
+			<!-- <img class="img-thumbnail" src="/img/img_covers/Cover1.jpg" width="1075" height="520">	 -->
+		</div><br>
+	</div>
+	<br>
+</div>
+
+<div class="panel-heading text-center">
+	<img src="/img/img_sep/FS2.png" class="img-fluid mx-auto d-block" style="width: 1000; height: 150;">
+	<div class="text-sup"><h2 class="panel-title">Productos recomendados</h2></div><br>
+</div>
+
+<div class="row" >	
+	<?php foreach ($this->product as $key): ?>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center" ><br>
+			<div class="card">
+				<div class="card-body">
+					<div class="product-block">
+						<div>
+							<!-- Sale lable -->
+							<div class="offers">
+								<?php if ($key["ofer"]==1): ?>
+									<i class="fa fa-tags"></i> OFERTA!
+								<?php endif; ?>
+							</div>
+							<!-- / Sale lable -->
+							<a href="/home/detalleproducto/id/<?php echo $key["id"]; ?>">
+								<img src="/<?php echo $key["imagen"]; ?>" width= "250" height= "250" class="rounded thumbnail">
+							</a>
+							<hr />
+						</div>
+						<div>
+							<h6 class="text-center"><a class="name" href="/home/detalleproducto/id/<?php echo $key["id"]; ?>"><?php echo strtoupper($key["nombre"]); ?></a></h6>
+							<div>
+								<p class="description-pr"><?php echo limitText($key["descripcion"]); ?> </p>
+								<hr/>
+							</div>
+							<div class="price">
+								<?php if ($key["ofer"]==1): ?>
+									<span class="price-new">$<?php echo $key["precioofer"]; ?></span>
+								<?php else: ?>
+									<span class="price-old">$<?php echo $key["precio"]; ?></span>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endforeach ?>
+</div>

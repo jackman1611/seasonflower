@@ -1,0 +1,28 @@
+<br>
+<div class="panel-heading text-center">
+	<img src="/img/img_sep/FS2.png" class="img-fluid mx-auto d-block" style="width: 1000; height: 150;"><br>
+	<h1 class="name">Recomendaciones</h1>
+</div>
+
+<div class="row">
+	<?php foreach ($this->recomendation as $key ) { ?>
+	<div class="col-md-3 "><br />
+		<div class="card">
+  			<div class="card-body">
+				<div class="product-block">
+					<div>
+						<a href="/home/productosrecomendacion/id/<?php echo $key["id"]; ?>">
+						<img src="/<?php echo $key["imagen"]; ?>" width= "230" height= "250" class="rounded mx-auto d-block">
+						</a>
+					</div>
+					<div >
+						<hr class="hr-dot" />
+						<h6 class="text-center name"><a href="/home/productosrecomendacion/id/<?php echo $key["id"]; ?>"><?php echo $key["nombre"]; ?></a></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php } ?>
+</div>
+			

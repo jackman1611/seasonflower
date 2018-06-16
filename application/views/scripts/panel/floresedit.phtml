@@ -1,0 +1,36 @@
+<div class="col-md-12">
+	<div class="white-box">
+		<div class="jumbotron" style="background-image: url('/img/flowers.jpg'); background-size: cover;
+				background-position: top center; ">
+		    <h1>Editar registro de flor de flores</h1>
+		</div>
+		<?php $session = new Zend_Session_Namespace("current_session"); 
+        		echo $session->nombre;
+			?>
+	</div>
+</div>
+
+<div class="col-md-12">
+	<div class="white-box">
+		<form action="/panel/requestupdateflower" method="POST" enctype="multipart/form-data" class="form-horizontal form-material">
+			<?php foreach ($this->flores as $flw) { ?>
+			<input type="hidden" name="id" value="<?php echo $flw["id"]; ?>" class="form-control" required>
+			<div class="form-group">
+				<label for="text">Nombre:</label>
+				<p><input type="text" name="name" class="form-control" value="<?php echo $flw["nombre"]; ?>"></p>
+			</div>
+			<div class="form-group">
+				<label for="text">Imagen descriptiva:</label><br>
+				<small><i>*Nota: Procure que la imagen debe tener el nombre rastreable y sin espacios, en su defecto remplazarlos por guion bajo. El tamaño de la imagen debe ser menor a 1.9 MB.</i></small><br>
+				<p><input type="file" name="cover" class="form-control"></p>
+				<input type="hidden" name="urlhidden" value="<?php echo $flw["imagen"]; ?>" class="form-control">
+			</div>
+			<?php } ?>
+			<!-- Boton -->
+			<div class="form-group text-center"><br>
+				<p><input type="submit" value="Enviar Datos" class="btn btn-primary" class="form-control"></p>
+			</div><br>
+			<!-- Boton -->
+		</form>
+	</div>
+</div>

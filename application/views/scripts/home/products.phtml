@@ -1,0 +1,26 @@
+<br>
+<div class="panel-heading text-center">
+	<img src="/img/img_sep/FS2.png" class="img-fluid mx-auto d-block" style="width: 1000; height: 150;"><br>
+	<h1 class="name">Productos</h1>
+</div>
+
+			
+			
+<div class="row">
+	<?php foreach ($this->product as $key){ ?>
+	<div class="col-md-3 text-center"><br />
+			<div class="card" >
+  				<div class="card-body">
+					<div class="product-block">
+						<a href="/home/detalleproducto/id/<?php echo $key["id"]; ?>"><img class="rounded mx-auto d-block" src="/<?php echo $key["imagen"]; ?>" WIDTH = '200' HEIGHT = '250' /><hr class="hr-dot" />
+							<h5><?php echo $key["nombre"]; ?></h5>
+						</a><br />
+					</div>
+				</div>
+			</div>
+	</div>
+	<?php } ?>
+</div> 
+
+
+
